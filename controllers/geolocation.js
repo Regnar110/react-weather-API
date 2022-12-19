@@ -26,27 +26,12 @@ const geoLocation = async (req, res) => {
         const latLonPosition = await geocoder.geocode({address: req.body.locationName})
         const { city, country, latitude, longitude} = latLonPosition[0];
         geoCodingFunction({city, country, latitude, longitude}, res)
-        // const getWeatherConditionsForCurrentCity = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,apparent_temperature,rain,snowfall,weathercode,surface_pressure,cloudcover,visibility,windgusts_10m&daily=weathercode,sunrise,sunset&timezone=GMT&start_date=${current_date}&end_date=${end_date}`);
-        // const weatherConditions = await getWeatherConditionsForCurrentCity.json();
-        // res.send({
-        //     city: city,
-        //     country: country,
-        //     currentWeather: weatherConditions
-        // })
     } else if(req.body.latitude && req.body.longitude) {
         const {latitude, longitude} = req.body;
         const resPosition = await geocoder.reverse({ lat: latitude, lon: longitude });
         const {city, country} = resPosition[0];
         geoCodingFunction({city, country, latitude, longitude}, res)
-        // const getWeatherConditionsForCurrentCity = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,apparent_temperature,rain,snowfall,weathercode,surface_pressure,cloudcover,visibility,windgusts_10m&daily=weathercode,sunrise,sunset&timezone=GMT&start_date=${current_date}&end_date=${end_date}`);
-        // const weatherConditions = await getWeatherConditionsForCurrentCity.json();
-        // res.send({
-        //     city: city,
-        //     country: country,
-        //     currentWeather: weatherConditions
-        // })
     }
-
 }
 
 module.exports = {geoLocation}
