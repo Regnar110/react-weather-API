@@ -36,12 +36,6 @@ const geoLocation = async (req, res) => {
 
 module.exports = {geoLocation}
 
-// Mamy endpoint dla opcji w której użytkownikowi łądowana jest pogoda dla pozycji jego urządzenia
-// teraz należy stworzyć endpoint dla użytkownika, który będzie chciał po nazwie miejscowości wyszukać jakieś miejsce i uzyskać dla niego dane pogodowe.
-
-
-
-
 
 
 
