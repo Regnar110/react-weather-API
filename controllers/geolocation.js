@@ -62,27 +62,3 @@ module.exports = {geoLocation}
 
 
 
-
-
-
-
-
-
-
-
-
-// const returnOneDayWeatherConditions = (data) => {
-//     // // delete data.daily.time
-//     // // delete data.hourly.time
-//     // const { sunrise, sunset } = data.daily;
-//     const { apparent_temperature, cloudcover, rain, snowfall, visibility, weathercode} = data.hourly;
-//     const newWeatherConditionsArray = [apparent_temperature, cloudcover, rain, snowfall, visibility, weathercode].map(el => {
-//         const newElement = el.splice(24, 145)
-//         return newElement
-//         })
-//     const newSunConditions = [sunrise, sunset].map(el => {
-//         const newSunConditions = el.splice(1, 6)
-//         return newSunConditions
-//     })
-//     return [newWeatherConditionsArray, newSunConditions];
-// }
