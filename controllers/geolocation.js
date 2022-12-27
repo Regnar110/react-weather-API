@@ -7,7 +7,7 @@ const geoCoderoptions = {
 
 const geocoder = NodeGeocoder(geoCoderoptions);
 const current_date = new Date().toISOString().split('T')[0]
-const end_date = new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0]
+const end_date = new Date(new Date().setDate(new Date().getDate() + 6)).toISOString().split('T')[0]
 
 const geoCodingFunction = async (geoData, res) => {
     try{
