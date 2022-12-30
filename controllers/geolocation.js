@@ -13,7 +13,7 @@ const geoCodingFunction = async (geoData, res) => {
     try{
         const { city, country, latitude, longitude} = geoData;
         console.log(`GEOCODING city: ${city}`)
-        const getWeatherConditionsForCurrentCity = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=temperature_2m,apparent_temperature,rain,snowfall,weathercode,surface_pressure,cloudcover,visibility,windgusts_10m&daily=weathercode,sunrise,sunset&timezone=GMT&start_date=${current_date}&end_date=${end_date}`);
+        const getWeatherConditionsForCurrentCity = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=weathercode,surface_pressure,cloudcover&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,rain_sum,showers_sum,snowfall_sum&timezone=GMT&start_date=${current_date}&end_date=${end_date}`);
         const weatherConditions = await getWeatherConditionsForCurrentCity.json();
         res.send({
             city: city,
