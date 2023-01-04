@@ -14,9 +14,10 @@ const geoCodingFunction = async (geoData, res) => {
         const { city, country, latitude, longitude} = geoData;
         console.log(`GEOCODING city: ${city}`)
         const getTimeForLocation = await fetch(`https://maps.googleapis.com/maps/api/timezone/json?location=${latitude},${longitude}&timestamp=1331161200&key=${process.env.REVERSE_GEO_LOCATION_KEY}`)
-        const getWeatherConditionsForCurrentCity = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=windspeed_10m,apparent_temperature,weathercode,surface_pressure,cloudcover,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,rain_sum,showers_sum,snowfall_sum&timezone=GMT&start_date=${current_date}&end_date=${end_date}`);
-        const weatherConditions = await getWeatherConditionsForCurrentCity.json();
         const timeForLocation = await getTimeForLocation.json();
+        console.log(timeForLocation)
+        const getWeatherConditionsForCurrentCity = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=windspeed_10m,apparent_temperature,weathercode,surface_pressure,cloudcover,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,rain_sum,showers_sum,snowfall_sum&timezone=${timeForLocation.timeZoneId}&start_date=${current_date}&end_date=${end_date}`);
+        const weatherConditions = await getWeatherConditionsForCurrentCity.json();
         res.send({
             city: city,
             country: country,
