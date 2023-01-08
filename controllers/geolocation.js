@@ -10,6 +10,7 @@ const current_date = new Date().toISOString().split('T')[0]
 const end_date = new Date(new Date().setDate(new Date().getDate() + 6)).toISOString().split('T')[0]
 
 const geoCodingFunction = async (geoData, res) => {
+    console.log("geoCodingFucntion")
     try{
         const { city, country, latitude, longitude} = geoData;
         console.log(`GEOCODING city: ${city}`)
@@ -34,6 +35,7 @@ const geoCodingFunction = async (geoData, res) => {
 
 const geoLocation = async (req, res) => {
     try {
+        console.log("geoLocation")
         if(req.body.locationName) { // here is going to be a timeZone API initiation to get timezone and time for current searched location
             const latLonPosition = await geocoder.geocode({address: req.body.locationName})
             const { city, country, latitude, longitude} = latLonPosition[0];
