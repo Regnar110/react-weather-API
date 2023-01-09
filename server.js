@@ -7,11 +7,10 @@ const port = 3600;
 const app = express();
 app.use(express.json()) // pozwala odczytać obiekt "body" requestu
 app.use(cors());
+app.set('trust proxy', true);
 
 app.post('/initCurrentUserGeoPosition', geoLocation)
 
 app.post('/suggestions', queryAutoComplete);
 
-app.listen(port, () =>{
-    console.log(`server listening on ${port}`)
-})
+app.listen(process.env.PORT || 3000, () => console.log(process.env.PORT))

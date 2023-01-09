@@ -1,5 +1,6 @@
 const NodeGeocoder = require('node-geocoder');
 require('dotenv').config();
+
 const geoCoderoptions = {
     provider: 'google',
     apiKey: process.env.REVERSE_GEO_LOCATION_KEY
@@ -26,6 +27,7 @@ const geoCodingFunction = async (geoData, res) => {
             currentLocationTime: new Date().toLocaleString("en-US", { timeZone: `${timeForLocation.timeZoneId}`, hour12: false, hour: '2-digit', minute:'2-digit'})
         })
     } catch(err) {
+        console.log(err)
         res.send({
             error:err,
             message: 'Failed to execute in geocoding()'
@@ -35,10 +37,11 @@ const geoCodingFunction = async (geoData, res) => {
 
 const geoLocation = async (req, res) => {
     try {
-        console.log("geoLocation")
+        console.log("geoLocation" + process.env.REVERSE_GEO_LOCATION_KEY)
         if(req.body.locationName) { // here is going to be a timeZone API initiation to get timezone and time for current searched location
             const latLonPosition = await geocoder.geocode({address: req.body.locationName})
             const { city, country, latitude, longitude} = latLonPosition[0];
+            console.log(city)
             geoCodingFunction({city, country, latitude, longitude}, res)
         } else if(req.body.latitude && req.body.longitude) {
             const {latitude, longitude} = req.body;
@@ -47,6 +50,7 @@ const geoLocation = async (req, res) => {
             geoCodingFunction({city, country, latitude, longitude}, res)
         }
     } catch(err) {
+        console.log(err)
         res.send({
             error: err,
             message: 'Failed to execute in geoLocation()'

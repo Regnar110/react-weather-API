@@ -1,6 +1,8 @@
 require('dotenv').config();
 
 const queryAutoComplete = async (req, res) => {
+  try{
+    console.log('query srodek')
     const input = req.body.input;
     const response = await fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=(cities)&key=${process.env.GOOGLE_PLACE_AUTOCOMPLETE_KEY}`)
     const {predictions} = await response.json();
@@ -13,6 +15,9 @@ const queryAutoComplete = async (req, res) => {
     res.send({
         data: placesNamesArray
     })
+  }catch(err) {
+    console.log(err)
+  }
   }
 
 module.exports = {queryAutoComplete}

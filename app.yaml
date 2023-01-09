@@ -1,1 +1,4 @@
-runtime: nodejs16
+runtime: nodejs18 
+env_variables:
+  REVERSE_GEO_LOCATION_KEY: 'AIzaSyA0cOHaNdBLFMr67qWir32OL2aMsVKq79k'
+  GOOGLE_PLACE_AUTOCOMPLETE_KEY: 'AIzaSyDTmq7K1YHTwl5ImM6PsbqXL7NntpgOUu4'
